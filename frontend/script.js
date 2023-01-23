@@ -52,7 +52,6 @@ const loadEvent = (_) => {
               fetch(API_URL)
                 .then((response) => response.json())
                 .then((data) => {
-                  // Handle the weather data here
                   console.log(data);
                   // Clear previous weather data
                   weatherCard.innerHTML = '';
@@ -60,6 +59,10 @@ const loadEvent = (_) => {
                   const cityName = document.createElement('p');
                   cityName.innerText = `City: ${data.location.name}`;
                   weatherCard.appendChild(cityName);
+
+                  const countryName = document.createElement('p');
+                  countryName.innerText = `Country: ${data.location.country}`;
+                  weatherCard.appendChild(countryName);
                 })
                 .catch((error) => {
                   //handle error if data is not available in the API
