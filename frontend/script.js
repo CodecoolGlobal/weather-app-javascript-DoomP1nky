@@ -20,7 +20,7 @@ const loadEvent = (_) => {
   root.appendChild(weatherCard);
 
   citySelector.addEventListener('input', () => {
-    if (citySelector.value.length >= 3){
+    if (citySelector.value.length >= 3) {
 
       // Fetch weather data for the selected city
       const API_KEY = 'ba8cd0c0041848dd91a191032232101';
@@ -33,14 +33,14 @@ const loadEvent = (_) => {
           matchList.innerHTML = '';
           // Iterate through search matchess
           data.forEach((match) => {
-          // Create list item for match
+            // Create list item for match
             const li = document.createElement('li');
             li.innerText = match.name;
             matchList.appendChild(li);
 
             // Add event listener to list item
             li.addEventListener('click', (e) => {
-            // Assign city name to input field
+              // Assign city name to input field
               citySelector.value = e.target.innerText;
               // Clear search matches
               matchList.innerHTML = '';
@@ -63,6 +63,10 @@ const loadEvent = (_) => {
                   const countryName = document.createElement('p');
                   countryName.innerText = `Country: ${data.location.country}`;
                   weatherCard.appendChild(countryName);
+
+                  const temperature = document.createElement('p');
+                  temperature.innerText = `Temperature: ${data.current.temp_c} °C`;
+                  weatherCard.appendChild(temperature);
                 })
                 .catch((error) => {
                   //handle error if data is not available in the API
@@ -74,7 +78,7 @@ const loadEvent = (_) => {
 
         })
         .catch((error) => {
-        //handle error if data is not available in the API
+          //handle error if data is not available in the API
           console.log(error);
           alert('Sorry, the selected data is not available');
         });
