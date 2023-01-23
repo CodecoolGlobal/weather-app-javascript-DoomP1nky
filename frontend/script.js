@@ -38,16 +38,46 @@ const loadEvent = (_) => {
             li.innerText = match.name;
             matchList.appendChild(li);
 
-            //add eventlistener to list item
+            // Add event listener to list item
             li.addEventListener('click', (e) => {
+            // Assign city name to input field
               citySelector.value = e.target.innerText;
+              // Clear search matches
               matchList.innerHTML = '';
+
+              //Fetch the weather data for the selected city
+              const API_KEY = 'ba8cd0c0041848dd91a191032232101';
+              const API_URL = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${citySelector.value}`;
+
+              fetch(API_URL)
+                .then((response) => response.json())
+                .then((data) => {
+                  // Handle the weather data here
+                  console.log(data);
+                  // Clear previous weather data
+                  weatherCard.innerHTML = '';
+                  // Create elements to display weather data
+                  const cityName = document.createElement('p');
+                  cityName.innerText = `City: ${data.location.name}`;
+                  weatherCard.appendChild(cityName);
+                })
+                .catch((error) => {
+                  //handle error if data is not available in the API
+                  console.log(error);
+                  alert('Sorry, the selected data is not available');
+                });
             });
           });
+
+        })
+        .catch((error) => {
+        //handle error if data is not available in the API
+          console.log(error);
+          alert('Sorry, the selected data is not available');
         });
     }
   });
-
 };
-//you can run your code in different ways but this is the safest. This way you can make sure that all the content (including css, fonts) is loaded.
+
+// you can run your code in different ways but this is the safest. This way you can make sure that all the content (including css, fonts) is loaded.
 window.addEventListener('load', loadEvent);
