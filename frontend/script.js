@@ -1,5 +1,6 @@
 
 const loadEvent = (_) => {
+  
   let favs = [];
   const root = document.getElementById('root');
 
@@ -34,15 +35,8 @@ const loadEvent = (_) => {
   addToFavoritesBtn.style.display = 'none';
   root.appendChild(addToFavoritesBtn);
 
-  const showFavouritesButton = document.createElement('button');
-  showFavouritesButton.innerText = 'Show favourites';
-  showFavouritesButton.id = 'show-favorites';
-  showFavouritesButton.style.display = 'none';
-  root.appendChild(showFavouritesButton);
-
   addToFavoritesBtn.addEventListener('click', () => {
     favs.push(document.getElementById('weather-card').firstChild.id);
-    showFavouritesButton.style.display = 'block';
     console.log(favs);
   });
 
@@ -58,19 +52,21 @@ const loadEvent = (_) => {
   });
 
   citySelector.addEventListener('input', citySelecting);
-  citySelector.addEventListener('click', citySelecting);
-  function citySelecting() {
-    console.log(citySelector.value.length);
-    if (!citySelector.value.length) {
+  citySelector.addEventListener('focus', citySelecting);
+
+  function citySelecting(){
+    if (!citySelector.value.length){
+      document.querySelector('#match-list').innerHTML = '';
       favs = Array.from(new Set(favs));
-      favs.forEach((city) => {
+      favs.forEach((city) =>{
         const li = document.createElement('li');
         li.innerText = city;
         li.style.border = 'solid';
         li.style.width = '100px';
         matchList.appendChild(li);
 
-      });
+      },
+      );
     }
     if (citySelector.value.length >= 3) {
 
