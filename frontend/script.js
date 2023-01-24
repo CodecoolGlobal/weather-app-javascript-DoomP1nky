@@ -112,9 +112,18 @@ const loadEvent = (_) => {
                   humidity.innerText = `Humidity: ${data.current.humidity} %`;
                   weatherCard.appendChild(humidity);
 
+                  const windSpeed = document.createElement('p');
+                  windSpeed.innerText = `Wind speed: ${data.current.wind_kph} Kph`;
+                  weatherCard.appendChild(windSpeed);
+
                   const skyCondition = document.createElement('p');
                   skyCondition.innerText = `Sky condition: ${data.current.condition.text}`;
                   weatherCard.appendChild(skyCondition);
+
+                  const skyConditionImg = document.createElement('img');
+                  //skyConditionImg.innerText = `Sky condition: ${data.current.condition.icon}`;
+                  skyConditionImg.src = data.current.condition.icon;
+                  weatherCard.appendChild(skyConditionImg);
                 })
                 .catch((error) => {
                   //handle error if data is not available in the API
