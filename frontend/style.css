@@ -1,0 +1,41 @@
+#search {
+    width: 300px;
+    height: 40px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+#match-list {
+    list-style-type: none;
+}
+
+#weather-card {
+    background-color:lightskyblue;
+    border-radius: 6px;
+    width: 300px;
+    box-shadow: 0px 20px 20px -10px;
+    position: relative;
+    overflow: hidden;
+}
+
+#add-favorites {
+    margin-top: 5%;
+    display: none;
+}
+
+#favorites-list{
+    display: none;
+}
+
+.li-id {
+    width: 150px;
+    padding: 1%;
+    border-style: groove;
+}
+
+.city-name {
+    font-weight: bold;
+    font-style: italic;
+    font-size: large;
+}
