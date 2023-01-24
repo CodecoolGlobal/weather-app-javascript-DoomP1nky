@@ -70,7 +70,11 @@ const loadEvent = (_) => {
             // Create list item for match
             const li = document.createElement('li');
             li.innerText = match.name;
+            li.style.border = 'solid';
+            li.style.width = '100px';
             matchList.appendChild(li);
+
+            li.addEventListener('mouseover', (e)=> e.target.style.cursor = 'zoom-in' );
 
             // Add event listener to list item
             li.addEventListener('click', (e) => {
@@ -79,6 +83,7 @@ const loadEvent = (_) => {
               // Clear search matches
               matchList.innerHTML = '';
               favoritesList.style.display = 'none';
+
 
               //Fetch the weather data for the selected city
               const API_KEY = 'ba8cd0c0041848dd91a191032232101';
