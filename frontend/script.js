@@ -1,6 +1,6 @@
 
 const loadEvent = (_) => {
-  let favs = []
+  const favs = [];
   const root = document.getElementById('root');
 
   // Create input field
@@ -41,9 +41,9 @@ const loadEvent = (_) => {
   root.appendChild(showFavouritesButton);
 
   addToFavoritesBtn.addEventListener('click', () => {
-    favs.push(document.getElementById('weather-card').firstChild.id)
-    showFavouritesButton.style.display = 'block'
-    console.log(favs)
+    favs.push(document.getElementById('weather-card').firstChild.id);
+    showFavouritesButton.style.display = 'block';
+    console.log(favs);
   });
 
   citySelector.addEventListener('focus', () => {
@@ -119,7 +119,7 @@ const loadEvent = (_) => {
                   // Create elements to display weather data
                   const cityName = document.createElement('p');
                   cityName.innerText = `City: ${data.location.name}`;
-                  cityName.setAttribute('id' , `${data.location.name}`)
+                  cityName.setAttribute('id', `${data.location.name}`);
                   weatherCard.appendChild(cityName);
 
                   const countryName = document.createElement('p');
@@ -134,12 +134,20 @@ const loadEvent = (_) => {
                   humidity.innerText = `Humidity: ${data.current.humidity} %`;
                   weatherCard.appendChild(humidity);
 
+                  const windSpeed = document.createElement('p');
+                  windSpeed.innerText = `Wind speed: ${data.current.wind_kph} Kph`;
+                  weatherCard.appendChild(windSpeed);
+
                   const skyCondition = document.createElement('p');
                   skyCondition.innerText = `Sky condition: ${data.current.condition.text}`;
                   weatherCard.appendChild(skyCondition);
 
                   citySelector.value = ''
               
+                  const skyConditionImg = document.createElement('img');
+                  //skyConditionImg.innerText = `Sky condition: ${data.current.condition.icon}`;
+                  skyConditionImg.src = data.current.condition.icon;
+                  weatherCard.appendChild(skyConditionImg);
                 })
                 .catch((error) => {
                   //handle error if data is not available in the API
