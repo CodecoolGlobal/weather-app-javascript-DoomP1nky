@@ -1,6 +1,6 @@
 
 const loadEvent = (_) => {
-  const favs = [];
+  let favs = [];
   const root = document.getElementById('root');
 
   // Create input field
@@ -34,15 +34,8 @@ const loadEvent = (_) => {
   addToFavoritesBtn.style.display = 'none';
   root.appendChild(addToFavoritesBtn);
 
-  const showFavouritesButton = document.createElement('button');
-  showFavouritesButton.innerText = 'Show favourites';
-  showFavouritesButton.id = 'show-favorites';
-  showFavouritesButton.style.display = 'none';
-  root.appendChild(showFavouritesButton);
-
   addToFavoritesBtn.addEventListener('click', () => {
     favs.push(document.getElementById('weather-card').firstChild.id);
-    showFavouritesButton.style.display = 'block';
     console.log(favs);
   });
 
