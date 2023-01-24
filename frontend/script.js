@@ -1,4 +1,6 @@
+
 const loadEvent = (_) => {
+  let favs = []
   const root = document.getElementById('root');
 
   // Create input field
@@ -32,11 +34,16 @@ const loadEvent = (_) => {
   addToFavoritesBtn.style.display = 'none';
   root.appendChild(addToFavoritesBtn);
 
+  const showFavouritesButton = document.createElement('button');
+  showFavouritesButton.innerText = 'Show favourites';
+  showFavouritesButton.id = 'show-favorites';
+  showFavouritesButton.style.display = 'none';
+  root.appendChild(showFavouritesButton);
+
   addToFavoritesBtn.addEventListener('click', () => {
-    // Add selected city to favorites list
-    const li = document.createElement('li');
-    li.innerText = citySelector.value;
-    favoritesList.appendChild(li);
+    favs.push(document.getElementById('weather-card').firstChild.id)
+    showFavouritesButton.style.display = 'block'
+    console.log(favs)
   });
 
   citySelector.addEventListener('focus', () => {
@@ -98,6 +105,7 @@ const loadEvent = (_) => {
                   // Create elements to display weather data
                   const cityName = document.createElement('p');
                   cityName.innerText = `City: ${data.location.name}`;
+                  cityName.setAttribute('id' , `${data.location.name}`)
                   weatherCard.appendChild(cityName);
 
                   const countryName = document.createElement('p');
