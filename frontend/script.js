@@ -19,6 +19,37 @@ const loadEvent = (_) => {
   weatherCard.id = 'weather-card';
   root.appendChild(weatherCard);
 
+
+  // Create favorites container
+  const favoritesList = document.createElement('ul');
+  favoritesList.id = 'favorites-list';
+  root.appendChild(favoritesList);
+
+  // Create button to add city to favorites
+  const addToFavoritesBtn = document.createElement('button');
+  addToFavoritesBtn.innerText = 'Add to Favorites';
+  addToFavoritesBtn.id = 'add-favorites';
+  addToFavoritesBtn.style.display = 'none';
+  root.appendChild(addToFavoritesBtn);
+
+  addToFavoritesBtn.addEventListener('click', () => {
+    // Add selected city to favorites list
+    const li = document.createElement('li');
+    li.innerText = citySelector.value;
+    favoritesList.appendChild(li);
+  });
+
+  citySelector.addEventListener('focus', () => {
+    if (citySelector.value === '') {
+      // Show favorites list
+      favoritesList.style.display = 'block';
+    } else {
+      // Hide favorites list
+      favoritesList.style.display = 'none';
+      addToFavoritesBtn.style.display = 'block';
+    }
+  });
+
   citySelector.addEventListener('input', () => {
     if (citySelector.value.length >= 3) {
 
@@ -31,6 +62,9 @@ const loadEvent = (_) => {
         .then((data) => {
           console.log(data);
           matchList.innerHTML = '';
+          // Hide favorites list
+          favoritesList.style.display = 'none';
+          addToFavoritesBtn.style.display = 'block';
           // Iterate through search matchess
           data.forEach((match) => {
             // Create list item for match
@@ -44,6 +78,7 @@ const loadEvent = (_) => {
               citySelector.value = e.target.innerText;
               // Clear search matches
               matchList.innerHTML = '';
+              favoritesList.style.display = 'none';
 
               //Fetch the weather data for the selected city
               const API_KEY = 'ba8cd0c0041848dd91a191032232101';
@@ -67,6 +102,14 @@ const loadEvent = (_) => {
                   const temperature = document.createElement('p');
                   temperature.innerText = `Temperature: ${data.current.temp_c} °C`;
                   weatherCard.appendChild(temperature);
+
+                  const humidity = document.createElement('p');
+                  humidity.innerText = `Humidity: ${data.current.humidity} %`;
+                  weatherCard.appendChild(humidity);
+
+                  const skyCondition = document.createElement('p');
+                  skyCondition.innerText = `Sky condition: ${data.current.condition.text}`;
+                  weatherCard.appendChild(skyCondition);
                 })
                 .catch((error) => {
                   //handle error if data is not available in the API
