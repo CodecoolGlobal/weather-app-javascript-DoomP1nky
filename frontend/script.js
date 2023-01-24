@@ -1,6 +1,6 @@
 
 const loadEvent = (_) => {
-  const favs = [];
+  let favs = [];
   const root = document.getElementById('root');
 
   // Create input field
@@ -57,21 +57,21 @@ const loadEvent = (_) => {
     }
   });
 
-  citySelector.addEventListener('input', citySelecting)
-  citySelector.addEventListener('click', citySelecting)
-  function citySelecting(){
-    console.log(citySelector.value.length)
-    if(!citySelector.value.length){
-      favs = Array.from(new Set(favs))
-      favs.forEach((city) =>{
-      const li = document.createElement('li');
-      li.innerText = city;
-      li.style.border = 'solid';
-      li.style.width = '100px';
-      matchList.appendChild(li);
-      
+  citySelector.addEventListener('input', citySelecting);
+  citySelector.addEventListener('click', citySelecting);
+  function citySelecting() {
+    console.log(citySelector.value.length);
+    if (!citySelector.value.length) {
+      favs = Array.from(new Set(favs));
+      favs.forEach((city) => {
+        const li = document.createElement('li');
+        li.innerText = city;
+        li.style.border = 'solid';
+        li.style.width = '100px';
+        matchList.appendChild(li);
+
+      });
     }
-  )}
     if (citySelector.value.length >= 3) {
 
       // Fetch weather data for the selected city
@@ -95,7 +95,7 @@ const loadEvent = (_) => {
             li.style.width = '100px';
             matchList.appendChild(li);
 
-            li.addEventListener('mouseover', (e)=> e.target.style.cursor = 'zoom-in' );
+            li.addEventListener('mouseover', (e) => e.target.style.cursor = 'zoom-in');
 
             // Add event listener to list item
             li.addEventListener('click', (e) => {
@@ -104,7 +104,6 @@ const loadEvent = (_) => {
               // Clear search matches
               matchList.innerHTML = '';
               favoritesList.style.display = 'none';
-              
 
               //Fetch the weather data for the selected city
               const API_KEY = 'ba8cd0c0041848dd91a191032232101';
@@ -142,8 +141,8 @@ const loadEvent = (_) => {
                   skyCondition.innerText = `Sky condition: ${data.current.condition.text}`;
                   weatherCard.appendChild(skyCondition);
 
-                  citySelector.value = ''
-              
+                  citySelector.value = '';
+
                   const skyConditionImg = document.createElement('img');
                   //skyConditionImg.innerText = `Sky condition: ${data.current.condition.icon}`;
                   skyConditionImg.src = data.current.condition.icon;
@@ -164,7 +163,7 @@ const loadEvent = (_) => {
           alert('Sorry, the selected data is not available');
         });
     }
-  };
+  }
 };
 
 // you can run your code in different ways but this is the safest. This way you can make sure that all the content (including css, fonts) is loaded.
