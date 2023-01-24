@@ -51,10 +51,11 @@ const loadEvent = (_) => {
   });
 
   citySelector.addEventListener('input', citySelecting)
-  citySelector.addEventListener('click', citySelecting)
+  citySelector.addEventListener('focus', citySelecting)
+
   function citySelecting(){
-    console.log(citySelector.value.length)
     if(!citySelector.value.length){
+      document.querySelector("#match-list").innerHTML = ''
       favs = Array.from(new Set(favs))
       favs.forEach((city) =>{
       const li = document.createElement('li');
