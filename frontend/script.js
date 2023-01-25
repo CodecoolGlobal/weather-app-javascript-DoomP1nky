@@ -172,10 +172,10 @@ const loadEvent = () => {
         console.log(error);
         alert('Sorry, the selected data is not available');
       });
-      handleFavoritesBtn.innerText = 'Add to Favorites'
-      if(favs.includes(cityName)){
-        handleFavoritesBtn.innerText = 'Remove from favorites'
-      }
+    handleFavoritesBtn.innerText = 'Add to Favorites';
+    if (favs.includes(cityName)){
+      handleFavoritesBtn.innerText = 'Remove from favorites';
+    }
   }
   function favsValidating(el) {
     if (!favs.includes(el)) {
