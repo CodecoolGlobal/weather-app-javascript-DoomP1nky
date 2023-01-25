@@ -135,15 +135,16 @@ const loadEvent = () => {
         cityName.setAttribute('id', `${data.location.name}`);
         weatherCard.appendChild(cityName);
 
+        const temperature = document.createElement('p');
+        temperature.className = 'temperature-valoue';
+        temperature.innerText = `${data.current.temp_c} °C`;
+        weatherCard.appendChild(temperature);
+
         const countryName = document.createElement('p');
         countryName.className = 'country-name';
         countryName.innerText = `Country: ${data.location.country}`;
         weatherCard.appendChild(countryName);
 
-        const temperature = document.createElement('p');
-        temperature.className = 'temperature-valoue';
-        temperature.innerText = `Temperature: ${data.current.temp_c} °C`;
-        weatherCard.appendChild(temperature);
 
         const humidity = document.createElement('p');
         humidity.className = 'humidity-valoue';

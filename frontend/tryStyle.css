@@ -127,11 +127,14 @@ body {
   display: none;
 }
 
-.li-id {
+.li-id:hover {
   font-family: Arial, Helvetica, sans-serif;
-  width: 150px;
   padding: 1%;
-  border-style: groove;
+  border-radius: 15px;
+  border: 1px solid #0B5AA2;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .city-name,
@@ -142,17 +145,19 @@ body {
 .sky-condition,
 .skyCondition-img {
   padding-left: 3%;
+  color: #ffffff;
+  font-size: large;
 }
 
 .city-name {
   font-weight: bold;
   font-style: italic;
   font-size: large;
+  font-size: 25px;
 }
 
 .temperature-valoue {
-  color: white;
-  font-size: x-large;
+  font-size: 35px;
   font-weight: bold;
 }
 
