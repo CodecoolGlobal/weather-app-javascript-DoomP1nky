@@ -2,6 +2,16 @@ const loadEvent = () => {
   const API_KEY = 'ba8cd0c0041848dd91a191032232101';
   let favs = [];
   const root = document.getElementById('root');
+  //create div's for clouds
+  const cloudWidget = document.createElement('div');
+  cloudWidget.id = 'cloud-widget';
+  root.appendChild(cloudWidget);
+  const cloudWidgetSmaller = document.createElement('div');
+  cloudWidgetSmaller.id = 'cloud-widget-smaller';
+  root.appendChild(cloudWidgetSmaller);
+  const cloudWidgetSmallest = document.createElement('div');
+  cloudWidgetSmallest.id = 'cloud-widget-smallest';
+  root.appendChild(cloudWidgetSmallest);
 
   // Create input field
   const citySelector = document.createElement('input');
@@ -108,26 +118,32 @@ const loadEvent = () => {
         weatherCard.appendChild(cityName);
 
         const countryName = document.createElement('p');
+        countryName.className = 'country-name';
         countryName.innerText = `Country: ${data.location.country}`;
         weatherCard.appendChild(countryName);
 
         const temperature = document.createElement('p');
+        temperature.className = 'temperature-valoue';
         temperature.innerText = `Temperature: ${data.current.temp_c} °C`;
         weatherCard.appendChild(temperature);
 
         const humidity = document.createElement('p');
+        humidity.className = 'humidity-valoue';
         humidity.innerText = `Humidity: ${data.current.humidity} %`;
         weatherCard.appendChild(humidity);
 
         const windSpeed = document.createElement('p');
+        windSpeed.className = 'wind-speed';
         windSpeed.innerText = `Wind speed: ${data.current.wind_kph} Kph`;
         weatherCard.appendChild(windSpeed);
 
         const skyCondition = document.createElement('p');
+        skyCondition.className = 'sky-condition';
         skyCondition.innerText = `Sky condition: ${data.current.condition.text}`;
         weatherCard.appendChild(skyCondition);
 
         const skyConditionImg = document.createElement('img');
+        skyConditionImg.className = 'skyCondition-img';
         skyConditionImg.src = data.current.condition.icon;
         weatherCard.appendChild(skyConditionImg);
 
