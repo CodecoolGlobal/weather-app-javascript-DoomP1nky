@@ -37,26 +37,26 @@ const loadEvent = () => {
   root.appendChild(favoritesList);
 
   // Create button to add city to favorites
-  const addToFavoritesBtn = document.createElement('button');
-  addToFavoritesBtn.innerText = 'Add to Favorites';
-  addToFavoritesBtn.id = 'add-favorites';
-  root.appendChild(addToFavoritesBtn);
+  const handleFavoritesBtn = document.createElement('button');
+  handleFavoritesBtn.innerText = 'Add to Favorites';
+  handleFavoritesBtn.id = 'add-favorites';
+  root.appendChild(handleFavoritesBtn);
 
   citySelector.addEventListener('input', citySelecting);
   citySelector.addEventListener('focus', citySelecting);
 
-  addToFavoritesBtn.addEventListener('click', () => {
-    favs.push(document.getElementById('weather-card').firstChild.id);
-    console.log(favs);
+  handleFavoritesBtn.addEventListener('click', () => {
+    favsValidating(document.getElementById('weather-card').firstChild.id)
   });
 
   citySelector.addEventListener('focus', () => {
-    favoritesList.style.display = citySelector.value === '' ? 'block' : 'none',
-    addToFavoritesBtn.style.display = citySelector.value === '' ? 'none' : 'block';
+    favoritesList.style.display = citySelector.value ? 'block' : 'none',
+      handleFavoritesBtn.style.display = citySelector.value ? 'none' : 'block';
   });
 
   function citySelecting() {
     const API_URL = `https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${citySelector.value}`;
+    // to auto refresh favourites without having to click into the searchbar : favsValidating()
     if (!citySelector.value.length) {
       document.querySelector('#match-list').innerHTML = '';
       favs = Array.from(new Set(favs));
@@ -77,7 +77,7 @@ const loadEvent = () => {
           console.log(data);
           matchList.innerHTML = '';
           // Hide favorites list
-          addToFavoritesBtn.style.display = 'block';
+          handleFavoritesBtn.style.display = 'block';
           // Iterate through search matchess
           data.forEach((match) => {
             // Create list item for match
@@ -150,11 +150,26 @@ const loadEvent = () => {
         citySelector.value = '';
       })
       .catch((error) => {
-      //handle error if data is not available in the API
+        //handle error if data is not available in the API
         console.log(error);
         alert('Sorry, the selected data is not available');
       });
   }
+  function favsValidating(el) {
+    if (!favs.includes(el)) {
+      favs.push(el)
+      handleFavoritesBtn.innerText = 'Remove from favorites'
+    } else {
+      for (let i = favs.length; i >= 0; i--) {
+        if (favs[i] === el) {
+          favs.splice(i, 1)
+          handleFavoritesBtn.innerText = 'Add to Favorites'
+        }
+      }
+    }
+  }
 };
 // you can run your code in different ways but this is the safest. This way you can make sure that all the content (including css, fonts) is loaded.
 window.addEventListener('load', loadEvent);
+
+
