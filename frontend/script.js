@@ -46,7 +46,7 @@ const loadEvent = () => {
   citySelector.addEventListener('focus', citySelecting);
 
   handleFavoritesBtn.addEventListener('click', () => {
-    favsValidating(document.getElementById('weather-card').firstChild.id)
+    favsValidating(document.getElementById('weather-card').firstChild.id);
   });
 
   citySelector.addEventListener('focus', () => {
@@ -157,13 +157,13 @@ const loadEvent = () => {
   }
   function favsValidating(el) {
     if (!favs.includes(el)) {
-      favs.push(el)
-      handleFavoritesBtn.innerText = 'Remove from favorites'
+      favs.push(el);
+      handleFavoritesBtn.innerText = 'Remove from favorites';
     } else {
       for (let i = favs.length; i >= 0; i--) {
         if (favs[i] === el) {
-          favs.splice(i, 1)
-          handleFavoritesBtn.innerText = 'Add to Favorites'
+          favs.splice(i, 1);
+          handleFavoritesBtn.innerText = 'Add to Favorites';
         }
       }
     }
