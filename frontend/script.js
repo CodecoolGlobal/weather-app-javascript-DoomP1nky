@@ -46,7 +46,7 @@ const loadEvent = () => {
 
   function citySelecting() {
     const API_URL = `https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${citySelector.value}`;
-    favsValidating()
+    // to auto refresh favourites without having to click into the searchbar : favsValidating()
     if (!citySelector.value.length) {
       document.querySelector('#match-list').innerHTML = '';
       favs = Array.from(new Set(favs));
