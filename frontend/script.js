@@ -69,7 +69,7 @@ const loadEvent = () => {
 
   citySelector.addEventListener('focus', () => {
     favoritesList.style.display = citySelector.value ? 'block' : 'none',
-    handleFavoritesBtn.style.display = citySelector.value ? 'none' : 'block';
+      handleFavoritesBtn.style.display = citySelector.value ? 'none' : 'block';
   });
 
   function citySelecting() {
@@ -92,24 +92,23 @@ const loadEvent = () => {
       fetch(API_URL)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           matchList.innerHTML = '';
           // Hide favorites list
           handleFavoritesBtn.style.display = 'block';
           // Iterate through search matchess
           data.forEach((match) => {
             // Create list item for match
-            if(match.name.toLowerCase().includes(`${citySelector.value.toLowerCase()}`)){
-            const li = document.createElement('li');
-            li.innerText = match.name;
-            li.className = 'li-id';
-            matchList.appendChild(li);
-            //style cursor
-            li.addEventListener('mouseover', (e) =>
-              (e.target.style.cursor = 'zoom-in'));
-            // Add event listener to list item
-            li.addEventListener('click', (e) =>
-              displayWeather(e.target.innerText));
+            if (match.name.toLowerCase().includes(`${citySelector.value.toLowerCase()}`)) {
+              const li = document.createElement('li');
+              li.innerText = match.name;
+              li.className = 'li-id';
+              matchList.appendChild(li);
+              //style cursor
+              li.addEventListener('mouseover', (e) =>
+                (e.target.style.cursor = 'zoom-in'));
+              // Add event listener to list item
+              li.addEventListener('click', (e) =>
+                displayWeather(e.target.innerText));
             }
           });
 
@@ -127,7 +126,6 @@ const loadEvent = () => {
     fetch(API_URL)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         // Clear previous weather data
         weatherCard.innerHTML = '';
         // Create elements to display weather data
@@ -176,7 +174,7 @@ const loadEvent = () => {
         alert('Sorry, the selected data is not available');
       });
     handleFavoritesBtn.innerText = 'Add to Favorites';
-    if (favs.includes(cityName)){
+    if (favs.includes(cityName)) {
       handleFavoritesBtn.innerText = 'Remove from favorites';
     }
   }
@@ -194,7 +192,6 @@ const loadEvent = () => {
     }
   }
 };
-// you can run your code in different ways but this is the safest. This way you can make sure that all the content (including css, fonts) is loaded.
 window.addEventListener('load', loadEvent);
 
 
