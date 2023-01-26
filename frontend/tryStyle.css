@@ -30,13 +30,36 @@ body {
 
 #cloud-widget {
   position: absolute;
-  background: #34373e;
+  background: rgb(255, 173, 50);
+  background: radial-gradient(circle, rgb(255, 173, 50) 40%, rgb(251, 189, 63) 50%, rgb(255, 253, 47) 100%);
   border-radius: 50%;
   box-shadow: 0px 50px 60px -20px #0066ff;
   height: 588px;
   width: 588px;
   right: -150px;
   top: 250px;
+}
+
+#cloud-widget-medium {
+  position: absolute;
+  border-radius: 50%;
+  background: #aacbe6;
+  box-shadow: 20px 20px 80px -20px #aacbe6;
+  height: 382.2px;
+  width: 382.2px;
+  top: 450px;
+  right: 80px;
+}
+
+#last-medium-cloud {
+  position: absolute;
+  border-radius: 50%;
+  background: #aacbe6;
+  box-shadow: 20px 20px 80px -20px #aacbe6;
+  height: 382.2px;
+  width: 382.2px;
+  top: 550px;
+  right: 250px;
 }
 
 #cloud-widget-smaller {
@@ -58,6 +81,26 @@ body {
   width: 267.54px;
   top: 500px;
   right: -20px;
+}
+
+#cloud-new-smallest {
+  position: absolute;
+  border-radius: 50%;
+  background: #d2e9fa;
+  height: 267.54px;
+  width: 267.54px;
+  top: 550px;
+  right: 100px;
+}
+
+#cloud-last-smallest {
+  position: absolute;
+  border-radius: 50%;
+  background: #d2e9fa;
+  height: 267.54px;
+  width: 267.54px;
+  top: 620px;
+  right: 250px;
 }
 
 #search {
@@ -84,26 +127,37 @@ body {
   display: none;
 }
 
-.li-id {
+.li-id:hover {
   font-family: Arial, Helvetica, sans-serif;
-  width: 150px;
   padding: 1%;
-  border-style: groove;
+  border-radius: 15px;
+  border: 1px solid #0B5AA2;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
-.city-name, .temperature-valoue, .country-name, .humidity-valoue, .wind-speed, .sky-condition, .skyCondition-img {
+.city-name,
+.temperature-valoue,
+.country-name,
+.humidity-valoue,
+.wind-speed,
+.sky-condition,
+.skyCondition-img {
   padding-left: 3%;
+  color: #ffffff;
+  font-size: large;
 }
 
 .city-name {
   font-weight: bold;
   font-style: italic;
   font-size: large;
+  font-size: 25px;
 }
 
 .temperature-valoue {
-  color: white;
-  font-size: x-large;
+  font-size: 35px;
   font-weight: bold;
 }
 

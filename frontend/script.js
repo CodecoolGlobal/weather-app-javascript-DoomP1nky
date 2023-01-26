@@ -6,12 +6,30 @@ const loadEvent = () => {
   const cloudWidget = document.createElement('div');
   cloudWidget.id = 'cloud-widget';
   root.appendChild(cloudWidget);
+
   const cloudWidgetSmaller = document.createElement('div');
   cloudWidgetSmaller.id = 'cloud-widget-smaller';
   root.appendChild(cloudWidgetSmaller);
+
+  const cloudWidgetMedium = document.createElement('div');
+  cloudWidgetMedium.id = 'cloud-widget-medium';
+  root.appendChild(cloudWidgetMedium);
+
+  const lastMediumCloud = document.createElement('div');
+  lastMediumCloud.id = 'last-medium-cloud';
+  root.appendChild(lastMediumCloud);
+
   const cloudWidgetSmallest = document.createElement('div');
   cloudWidgetSmallest.id = 'cloud-widget-smallest';
   root.appendChild(cloudWidgetSmallest);
+
+  const cloudNewSmallest = document.createElement('div');
+  cloudNewSmallest.id = 'cloud-new-smallest';
+  root.appendChild(cloudNewSmallest);
+
+  const cloudLastSmallest = document.createElement('div');
+  cloudLastSmallest.id = 'cloud-last-smallest';
+  root.appendChild(cloudLastSmallest);
 
   // Create input field
   const citySelector = document.createElement('input');
@@ -51,7 +69,7 @@ const loadEvent = () => {
 
   citySelector.addEventListener('focus', () => {
     favoritesList.style.display = citySelector.value ? 'block' : 'none',
-      handleFavoritesBtn.style.display = citySelector.value ? 'none' : 'block';
+    handleFavoritesBtn.style.display = citySelector.value ? 'none' : 'block';
   });
 
   function citySelecting() {
@@ -119,15 +137,16 @@ const loadEvent = () => {
         cityName.setAttribute('id', `${data.location.name}`);
         weatherCard.appendChild(cityName);
 
+        const temperature = document.createElement('p');
+        temperature.className = 'temperature-valoue';
+        temperature.innerText = `${data.current.temp_c} °C`;
+        weatherCard.appendChild(temperature);
+
         const countryName = document.createElement('p');
         countryName.className = 'country-name';
         countryName.innerText = `Country: ${data.location.country}`;
         weatherCard.appendChild(countryName);
 
-        const temperature = document.createElement('p');
-        temperature.className = 'temperature-valoue';
-        temperature.innerText = `Temperature: ${data.current.temp_c} °C`;
-        weatherCard.appendChild(temperature);
 
         const humidity = document.createElement('p');
         humidity.className = 'humidity-valoue';
@@ -156,10 +175,10 @@ const loadEvent = () => {
         console.log(error);
         alert('Sorry, the selected data is not available');
       });
-      handleFavoritesBtn.innerText = 'Add to Favorites'
-      if(favs.includes(cityName)){
-        handleFavoritesBtn.innerText = 'Remove from favorites'
-      }
+    handleFavoritesBtn.innerText = 'Add to Favorites';
+    if (favs.includes(cityName)){
+      handleFavoritesBtn.innerText = 'Remove from favorites';
+    }
   }
   function favsValidating(el) {
     if (!favs.includes(el)) {
