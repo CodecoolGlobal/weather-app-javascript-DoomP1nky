@@ -81,6 +81,7 @@ const loadEvent = () => {
           // Iterate through search matchess
           data.forEach((match) => {
             // Create list item for match
+            if(match.name.toLowerCase().includes(`${citySelector.value.toLowerCase()}`)){
             const li = document.createElement('li');
             li.innerText = match.name;
             li.className = 'li-id';
@@ -91,6 +92,7 @@ const loadEvent = () => {
             // Add event listener to list item
             li.addEventListener('click', (e) =>
               displayWeather(e.target.innerText));
+            }
           });
 
         });
